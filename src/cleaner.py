@@ -29,7 +29,7 @@ def clean_text(raw_text):
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": f"Clean this text: {raw_text}"}
         ],
-      model="llama-3.3-70b-versatile", # UPDATE THIS LINE
+      model="llama-3.3-70b-versatile",
         temperature=0.1,
     )
 
