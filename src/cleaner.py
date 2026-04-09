@@ -23,13 +23,14 @@ def clean_text(raw_text):
     )
 
     # 3. Create the request to the AI
+    # ... inside your clean_text function ...
     chat_completion = client.chat.completions.create(
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": f"Clean this text: {raw_text}"}
         ],
-        model="llama3-8b-8192", # We use the fast, smaller model for cleaning
-        temperature=0.1,        # 0.1 makes it very 'strict' and less creative
+      model="llama-3.3-70b-versatile",
+        temperature=0.1,
     )
 
     # 4. Extract and return the cleaned text
