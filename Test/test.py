@@ -28,6 +28,9 @@ def run_full_pipeline():
     # 3. Cleaning
     print("🧹 Step 2: Cleaning OCR noise...")
     clean_output = clean_text(raw_text)
+    print("--- DEBUG: Day 2 Cleaning Result ---")
+    print(clean_output[:100] + "...") 
+    print("------------------------------------\n")
     
     # 4. Analysis
     print("🧠 Step 3: Performing Hybrid Forensic Analysis...")
@@ -41,7 +44,3 @@ def run_full_pipeline():
 
 if __name__ == "__main__":
     run_full_pipeline()
-# After Step 2 (Cleaning)
-    print("--- DEBUG: Day 2 Cleaning Result ---")
-    #print(clean_output[:100] + "...") # Shows first 100 characters of clean text
-    print("------------------------------------\n")
