@@ -25,8 +25,8 @@ def extract_from_csv(file_bytes):
 
 def extract_from_json(file_bytes):
     """Reads data from JSON files."""
-    df = pd.read_json(io.BytesIO(file_bytes))
-    return df.to_string(index=False)
+    data = json.loads(file_bytes.decode('utf-8'))
+    return json.dumps(data, indent=2)
 
 def get_text_from_file(file_name, file_bytes):
     """The 'Router' that picks the right tool based on file type."""
