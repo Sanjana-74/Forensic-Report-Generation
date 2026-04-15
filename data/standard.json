@@ -1,0 +1,10 @@
+[
+    {
+        "file_name": "Day1.png",
+        "expected_findings": [
+            { "category": "Data Exfiltration", "finding": "put it on that encrypted external SSD", "risk": "Critical" },
+            { "category": "Evidence Tampering", "finding": "completely wipe the source directory", "risk": "High" },
+            { "category": "Secrecy/Evasion", "finding": "meet you at the predetermined spot", "risk": "High" }
+        ]
+    }
+]
