@@ -7,7 +7,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 load_dotenv()
 EMBED_MODEL = SentenceTransformer('all-MiniLM-L6-v2')
-
 def get_vector_finding(text_content):
     """
     Local Triage: Uses Vector Similarity to check our 75-row 
@@ -36,6 +35,7 @@ def get_vector_finding(text_content):
 def analyze_forensic_workload(files_dict):
     """
     Finalized Day 3 Analyzer: Integrates Local ML flags + LLM Deep Analysis.
+>>>>>>> main
     """
     # 1. Self-Healing Client Initialization
     api_key = os.environ.get("GROQ_API_KEY")
@@ -61,9 +61,11 @@ def analyze_forensic_workload(files_dict):
         "Data Exfiltration, Evidence Tampering, Secrecy/Evasion, or Financial Anomaly.\n\n"
         
         "### FEW-SHOT EXAMPLES:\n"
+
         "1. Finding: | Data Exfiltration | 'Copied to SSD' | Moving data to external media. | Critical | chat.png |\n"
         "2. Finding: | Evidence Tampering | 'Wiped logs' | Use of secure deletion tools. | High | logs.txt |\n"
         "3. Finding: | Secrecy/Evasion | 'Meet at the spot' | Suspicious physical coordination. | High | cap.jpg |\n\n"
+
         
         "### OUTPUT FORMAT:\n"
         "Return a Markdown table with: | Category | Finding (Quote) | Significance | Risk |"

@@ -31,11 +31,21 @@ def run_full_evaluation():
     # --- DAY 2: CLEANING ---
     print("\n🧹 [DAY 2] Cleaning: Normalizing OCR noise with LLM...")
     clean_output = clean_text(raw_text)
+
     print(f"--- CLEANED TEXT ---\n{clean_output}\n" + "-"*20)
 
     # --- DAY 3: ANALYSIS & RISK ---
     print("\n🧠 [DAY 3] Analysis: Performing Hybrid Vector + LLM Scanning...")
     evidence_set = {"Day1.png": clean_output}
+
+    print("--- DEBUG: Day 2 Cleaning Result ---")
+    print(clean_output[:100] + "...") 
+    print("------------------------------------\n")
+    
+    # 4. Analysis
+    print("🧠 Step 3: Performing Hybrid Forensic Analysis...")
+    evidence_set = {os.path.basename(IMAGE_PATH): clean_output}
+
     final_report = analyze_forensic_workload(evidence_set)
     
     # --- DAY 4: ACCURACY GRADING ---
@@ -75,4 +85,6 @@ def run_full_evaluation():
     print(final_report)
 
 if __name__ == "__main__":
+
     run_full_evaluation()
+
