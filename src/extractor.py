@@ -6,6 +6,10 @@ import io
 # We initialize the reader once to save memory
 # 'en' tells it to look for English text
 reader = easyocr.Reader(['en'])
+def extract_from_txt(file_bytes):
+    """Reads plain text files."""
+    # .decode('utf-8') turns the raw bytes into a human-readable string
+    return file_bytes.decode('utf-8')
 
 def extract_from_image(file_bytes):
     """Reads text from screenshots or photos."""
@@ -34,5 +38,7 @@ def get_text_from_file(file_name, file_bytes):
         return extract_from_csv(file_bytes)
     elif ext == 'json':
         return extract_from_json(file_bytes)
+    elif ext == 'txt':
+        return extract_from_txt(file_bytes)
     else:
         return "Unsupported file format."
