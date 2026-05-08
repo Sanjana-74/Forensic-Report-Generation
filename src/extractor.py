@@ -2,10 +2,14 @@ import pandas as pd
 import easyocr
 from PIL import Image
 import io
+import json
+import hashlib
 
 # We initialize the reader once to save memory
 # 'en' tells it to look for English text
 reader = easyocr.Reader(['en'])
+def calculate_sha256(file_bytes):
+    return hashlib.sha256(file_bytes).hexdigest()
 def extract_from_txt(file_bytes):
     """Reads plain text files."""
     # .decode('utf-8') turns the raw bytes into a human-readable string
@@ -29,16 +33,21 @@ def extract_from_json(file_bytes):
     return json.dumps(data, indent=2)
 
 def get_text_from_file(file_name, file_bytes):
-    """The 'Router' that picks the right tool based on file type."""
+    """The 'Router' that now correctly returns BOTH text and hash."""
     ext = file_name.split('.')[-1].lower()
-
+    file_hash = calculate_sha256(file_bytes)
+    
+    # Store the result in a variable instead of returning immediately
     if ext in ['png', 'jpg', 'jpeg']:
-        return extract_from_image(file_bytes)
+        text = extract_from_image(file_bytes)
     elif ext == 'csv':
-        return extract_from_csv(file_bytes)
+        text = extract_from_csv(file_bytes)
     elif ext == 'json':
-        return extract_from_json(file_bytes)
+        text = extract_from_json(file_bytes)
     elif ext == 'txt':
-        return extract_from_txt(file_bytes)
+        text = extract_from_txt(file_bytes)
     else:
-        return "Unsupported file format."
+        text = "Unsupported file format."
+        
+    # Now return both values as a tuple
+    return text, file_hash
